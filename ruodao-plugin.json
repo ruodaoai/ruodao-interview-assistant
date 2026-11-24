@@ -1,0 +1,253 @@
+{
+  "id": "com.ruodao.interview-assistant",
+  "name": "面试助手（实时听题 · 模拟面试 · 简历管理 · 自动投递）",
+  "version": "1.17.5",
+  "apiVersion": ">=0.1.0 <0.2.0",
+  "description": "双通道实时面试助手：面试官（系统内录）与候选人（麦克风）分轨识别，自动区分问题与回答；生成可直接说出口的答案，整场录音可回放。支持粘贴 JD 的免按键语音模拟面试（口语短问题 + 本机/云端/克隆音色 + 实时转写自动接话 + 五维复盘）、简历管理（导入自动清洗换行、逐模块 AI 润色、整份诊断、按诊断一键修改并逐条确认、单项 AI 优化、修改历史可撤回、职业规划与面试建议、29 套模板导出附件 PDF）、自动投递（Boss直聘/智联招聘/前程无忧实时搜岗，一次搜索多个目标岗位，可按薪资/经验/学历/猎头/不活跃 HR/外包驻场过滤；岗位标签与一键屏蔽公司；招呼语支持 AI 生成、固定模板、发送前预览与重复沟通话术；求职小助手对话式配置档案与搜索计划；企业官网网申自动填写；登录/验证码/提交由本人确认）、数据与备份（导出/恢复备份、每日自动快照保留 5 份）、题库与整份题库分享、面试分享到插件案例、战前准备与整场复盘。",
+  "requires": {
+    "capabilities": {
+      "required": {
+        "commands": "0.1.0",
+        "code.execute": "0.1.0"
+      }
+    },
+    "hostApis": [
+      "autoApplyAdd",
+      "autoApplyAnalyzeCompanies",
+      "autoApplyApplySite",
+      "autoApplyAssistant",
+      "autoApplyBatchForceStop",
+      "autoApplyBatchPause",
+      "autoApplyBatchPreflight",
+      "autoApplyBatchRecheck",
+      "autoApplyBatchResume",
+      "autoApplyBatchStart",
+      "autoApplyBatchStatus",
+      "autoApplyBatchStop",
+      "autoApplyCatalog",
+      "autoApplyClose",
+      "autoApplyCoach",
+      "autoApplyCompanies",
+      "autoApplyCompanyIntel",
+      "autoApplyCompanyTags",
+      "autoApplyCompanyVerdicts",
+      "autoApplyCorrectCompany",
+      "autoApplyEvidence",
+      "autoApplyGreet",
+      "autoApplyGreeting",
+      "autoApplyJobTags",
+      "autoApplyJobTagsSave",
+      "autoApplyMarkSubmitted",
+      "autoApplyOutcomes",
+      "autoApplyPolishGreeting",
+      "autoApplyPrepare",
+      "autoApplyProfileSave",
+      "autoApplyPublishCompanies",
+      "autoApplyRecommend",
+      "autoApplyRemove",
+      "autoApplyReportOutcome",
+      "autoApplyRulesSave",
+      "autoApplyRun",
+      "autoApplyState",
+      "autoApplySyncCompanyIntel",
+      "autoApplySyncProfile",
+      "autoApplyUpdate",
+      "exportInterviewData",
+      "interviewCloudDelete",
+      "interviewCloudPull",
+      "interviewCloudStatus",
+      "interviewCloudUpload",
+      "interviewDataStatus",
+      "jobSitesClose",
+      "jobSitesOpen",
+      "jobSitesRefresh",
+      "jobSitesSearch",
+      "jobSitesSearchCancel",
+      "jobSitesStatus",
+      "jobSitesVerify",
+      "meetingTtsSynthesize",
+      "openInterviewBackupFolder",
+      "pickInterviewDataRestore",
+      "restoreInterviewData",
+      "restoreInterviewDataSnapshot",
+      "resumeAi",
+      "resumeDelete",
+      "resumeDuplicate",
+      "resumeExportPdf",
+      "resumeGet",
+      "resumeImport",
+      "resumeList",
+      "resumePrefsSave",
+      "resumeSave",
+      "runPluginInterviewAnswer",
+      "runPluginInterviewCoach",
+      "runPluginInterviewListenPoll",
+      "runPluginInterviewListenStart",
+      "runPluginInterviewListenStop",
+      "runPluginInterviewMockAnswerCancel",
+      "runPluginInterviewMockAnswerStart",
+      "runPluginInterviewMockAnswerStop",
+      "runPluginInterviewMockAnswerSubmit",
+      "runPluginInterviewMockFinish",
+      "runPluginInterviewMockListenArm",
+      "runPluginInterviewMockListenPoll",
+      "runPluginInterviewMockListenStart",
+      "runPluginInterviewMockListenStop",
+      "runPluginInterviewMockPrepare",
+      "runPluginInterviewMockStart",
+      "runPluginInterviewMockTurn",
+      "runPluginInterviewMockWarmup",
+      "runPluginInterviewRecordingExport",
+      "runPluginInterviewSessionDelete",
+      "runPluginInterviewSessionDetail",
+      "runPluginInterviewSessionEnd",
+      "runPluginInterviewSessionList",
+      "runPluginInterviewSessionStart",
+      "runPluginInterviewSessionUpdate",
+      "runPluginInterviewStatus",
+      "runPluginInterviewWarmup",
+      "ruodaoAuthState",
+      "ruodaoLogin",
+      "ruodaoPluginCaseCreate",
+      "ruodaoPluginCaseDelete",
+      "ruodaoPluginCaseList",
+      "ruodaoPluginCaseMine",
+      "shellReveal",
+      "talentApplicationWithdraw",
+      "talentApplications",
+      "talentApply",
+      "talentInterestRespond",
+      "talentInterests",
+      "talentPlatformJobs",
+      "talentProfileDelete",
+      "talentProfileGet",
+      "talentProfileSave",
+      "voiceLocalAsrInstall",
+      "voiceModelsStatus",
+      "voiceProfilesList",
+      "voicePunctInstall",
+      "voiceSettingsGet",
+      "voiceSettingsSet"
+    ]
+  },
+  "permissions": [
+    "process",
+    "network"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "id": "com.ruodao.interview.assistant.doctor",
+        "title": "环境自检（ffmpeg / STT / LLM 配置）",
+        "description": "检查 ffmpeg、麦克风设备与 STT/LLM 环境变量是否就绪，不产生费用。",
+        "action": {
+          "type": "process",
+          "command": "node",
+          "args": [
+            "bin/interview-assistant.mjs",
+            "doctor"
+          ],
+          "cwd": ".",
+          "timeoutMs": 20000
+        }
+      },
+      {
+        "id": "com.ruodao.interview.assistant.capture",
+        "title": "听题并生成答案",
+        "description": "录制一段麦克风音频（默认 10 秒，可用环境变量 RUODAO_CAPTURE_SECONDS 调整），转写面试官问题并立即生成答案，输出 JSON：{question, answer, points}。",
+        "action": {
+          "type": "process",
+          "command": "node",
+          "args": [
+            "bin/interview-assistant.mjs",
+            "capture"
+          ],
+          "cwd": ".",
+          "timeoutMs": 120000
+        }
+      },
+      {
+        "id": "com.ruodao.interview.assistant.questions",
+        "title": "常见面试题库",
+        "description": "返回分类整理的高频面试题库（通用 HR / 项目经验 / 前端基础 / 框架工程 / 网络安全 / 算法场景题），可在工作台点击题目生成参考答案。",
+        "action": {
+          "type": "process",
+          "command": "node",
+          "args": [
+            "bin/interview-assistant.mjs",
+            "questions"
+          ],
+          "cwd": ".",
+          "timeoutMs": 20000
+        }
+      },
+      {
+        "id": "com.ruodao.interview.assistant.answer-text",
+        "title": "文字问题直接生成答案",
+        "description": "跳过录音，把输入 prompt（或 stdin JSON 的 prompt 字段）当作面试官问题，直接生成答案。适合电话质量差时手动输入问题。",
+        "action": {
+          "type": "process",
+          "command": "node",
+          "args": [
+            "bin/interview-assistant.mjs",
+            "answer-text"
+          ],
+          "cwd": ".",
+          "timeoutMs": 60000
+        }
+      }
+    ],
+    "services": [
+      {
+        "id": "main",
+        "title": "面试助手常驻服务（简历库 · 求职档案 · 招呼语 · 投递材料）",
+        "description": "插件自己的 Node 进程承载有状态的本地业务：简历库读写与清洗、求职档案与安全规则、简历同步、岗位标签、招呼语与投递材料生成、求职小助手、面试场次。数据仍写在宿主 userData 下，动手执行与备份继续共用同一份文件；模型调用经宿主 llm.chat 完成。",
+        "action": {
+          "type": "process",
+          "command": "node",
+          "args": [
+            "bin/service.mjs"
+          ],
+          "cwd": "."
+        },
+        "hostMethods": [
+          "resume.changed",
+          "autoApply.changed",
+          "autoApply.renderResumeImage",
+          "jobSites.status",
+          "jobSites.enrich",
+          "llm.available",
+          "llm.chat",
+          "browser.statusAll",
+          "browser.status",
+          "browser.isClosed",
+          "browser.tokenState",
+          "browser.open",
+          "browser.close",
+          "browser.refresh",
+          "browser.openAux",
+          "browser.closeAux",
+          "browser.goto",
+          "browser.evaluate",
+          "browser.waitContent",
+          "browser.capture.start",
+          "browser.capture.stop",
+          "browser.blocker",
+          "browser.loginState",
+          "browser.openLogin",
+          "browser.hasLoginDialog",
+          "browser.body",
+          "browser.url",
+          "browser.title",
+          "browser.reveal",
+          "browser.click",
+          "browser.fill",
+          "browser.pressKey",
+          "browser.upload",
+          "browser.chooseFile",
+          "browser.screenshot"
+        ]
+      }
+    ]
+  }
+}
